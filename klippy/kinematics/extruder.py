@@ -1,8 +1,3 @@
-# Code for handling printer nozzle extruders
-#
-# Copyright (C) 2016-2022  Kevin O'Connor <kevin@koconnor.net>
-#
-# This file may be distributed under the terms of the GNU GPLv3 license.
 import math, logging
 import stepper, chelper
 
@@ -66,7 +61,7 @@ class ExtruderStepper:
         if extruder is None or not isinstance(extruder, PrinterExtruder):
             raise self.printer.command_error("'%s' is not a valid extruder."
                                              % (extruder_name,))
-        self.stepper.set_position([extruder.last_position, 0., 0.])
+        self.stepper.set_position([extruder.last_position, 0., 0.,0.,0.]) #coextrusion
         self.stepper.set_trapq(extruder.get_trapq())
         self.motion_queue = extruder_name
     def _set_pressure_advance(self, pressure_advance, smooth_time):
@@ -338,3 +333,4 @@ def add_printer_objects(config):
             break
         pe = PrinterExtruder(config.getsection(section), i)
         printer.add_object(section, pe)
+
