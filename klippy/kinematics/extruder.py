@@ -61,7 +61,7 @@ class ExtruderStepper:
         if extruder is None or not isinstance(extruder, PrinterExtruder):
             raise self.printer.command_error("'%s' is not a valid extruder."
                                              % (extruder_name,))
-        self.stepper.set_position([extruder.last_position, 0., 0.,0.,0.]) #coextrusion
+        self.stepper.set_position([extruder.last_position, 0., 0.,0.,0.]) #coextrusion https://youtu.be/ZO3uLErbtSA?si=Z5pKFxai-EOGaFKl
         self.stepper.set_trapq(extruder.get_trapq())
         self.motion_queue = extruder_name
     def _set_pressure_advance(self, pressure_advance, smooth_time):
